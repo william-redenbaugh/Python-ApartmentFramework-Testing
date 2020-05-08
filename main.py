@@ -26,10 +26,3 @@ for i in range(msg_len):
 
 # Then we tack on the last instruction
 msg = msg_dat + instruction_bytearray
-
-for val in msg:
-    print(int(val))
-
-for i in range(100):
-    ser.write(msg)
-    time.sleep(.01)
