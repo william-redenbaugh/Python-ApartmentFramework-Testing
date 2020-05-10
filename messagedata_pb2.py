@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x11messagedata.proto\"\xa1\x01\n\x0bMessageData\x12\x14\n\x0cmessage_size\x18\x01 \x01(\r\x12.\n\x0cmessage_type\x18\x02 \x01(\x0e\x32\x18.MessageData.MessageType\"L\n\x0bMessageType\x12\x18\n\x14GENERAL_INSTRUCTIONS\x10\x00\x12\x0f\n\x0bMATRIX_DATA\x10\x01\x12\x12\n\x0eLED_STRIP_DATA\x10\x02\x62\x06proto3')
+  serialized_pb=_b('\n\x11messagedata.proto\"\xb9\x01\n\x0bMessageData\x12\x14\n\x0cmessage_size\x18\x01 \x01(\r\x12.\n\x0cmessage_type\x18\x02 \x01(\x0e\x32\x18.MessageData.MessageType\"d\n\x0bMessageType\x12\x18\n\x14GENERAL_INSTRUCTIONS\x10\x00\x12\x0f\n\x0bMATRIX_DATA\x10\x01\x12\x12\n\x0eLED_STRIP_DATA\x10\x02\x12\x16\n\x12HEAAT_CONTROL_DATA\x10\x03\x62\x06proto3')
 )
 
 
@@ -42,11 +42,15 @@ _MESSAGEDATA_MESSAGETYPE = _descriptor.EnumDescriptor(
       name='LED_STRIP_DATA', index=2, number=2,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HEAAT_CONTROL_DATA', index=3, number=3,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=107,
-  serialized_end=183,
+  serialized_end=207,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGEDATA_MESSAGETYPE)
 
@@ -86,7 +90,7 @@ _MESSAGEDATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=22,
-  serialized_end=183,
+  serialized_end=207,
 )
 
 _MESSAGEDATA.fields_by_name['message_type'].enum_type = _MESSAGEDATA_MESSAGETYPE
