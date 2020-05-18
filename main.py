@@ -10,15 +10,15 @@ import colorsys
 
 def test_matrix():
     # Address and port for our esp32. if we are using sockets.
-    # server_address_port = ('192.168.1.27', 4040)
-    # client_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    matrix = udp_matrix.LEDMatrix(64, 32)
+
+    server_address_port = ('192.168.1.27', 4040)
+    matrix = udp_matrix.LEDMatrix(server_address_port, 64, 32)
     while True:
         for h in range(250):
             for y in range(32):
                 for x in range(64):
-                    hue_val = (x * 4 + h) % 255
-                    matrix.set_led_hsv(x, y, hue_val, 128, 250)
+                    hue_val = (y * x + h) % 255
+                    matrix.set_led_hsv(x, y, hue_val, 128, 90)
 
             matrix.update()
             time.sleep(0.01)
