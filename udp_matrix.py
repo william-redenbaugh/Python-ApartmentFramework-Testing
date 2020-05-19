@@ -1,5 +1,6 @@
 import socket
 import colorsys
+import messagedata_pb2
 
 class LEDMatrix:
     def __init__(self, server_address_port,  x_size, y_size):
@@ -9,6 +10,16 @@ class LEDMatrix:
 
         self.server_address_port = server_address_port
         self.client_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+        # Setting up message and general instruction data to tell led to toggle led.
+        self.message_data = messagedata_pb2.MessageData()
+        self.message_data.message_size = 6144
+        self.message_data.message_type = messagedata_pb2.MessageData.MessageType.MATRIX_DATA
+
+        self.msg_dat = bytearray(self.message_data.SerializeToString())
+        msg_len = 16 - len(self.msg_dat)
+        for i in range(msg_len):
+            self.msg_dat.append(0)
 
     def set_led(self, x, y, r, g, b):
         spot = (self.x_size * y + x) * 3
@@ -41,5 +52,5 @@ class LEDMatrix:
 
     def update(self):
         # If we are using UDP sockets to send information
-        msg = bytearray(self.out_arr)
+        msg = self.msg_dat + bytearray(self.out_arr)
         self.client_socket.sendto(msg, self.server_address_port)
