@@ -2,7 +2,6 @@
 import numpy as np
 import pyaudio
 import threading
-import pylab
 import time 
 
 class MatrixFFT:

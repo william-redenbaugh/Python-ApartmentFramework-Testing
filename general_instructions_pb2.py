@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x1ageneral_instructions.proto\"\x9e\x01\n\x13GeneralInstructions\x12=\n\x11main_instructions\x18\x01 \x01(\x0e\x32\".GeneralInstructions.MainInstrEnum\"H\n\rMainInstrEnum\x12\x0e\n\nDO_NOTHING\x10\x00\x12\n\n\x06REBOOT\x10\x01\x12\x0c\n\x08\x46REE_MEM\x10\x02\x12\r\n\tFLASH_LED\x10\x03\x62\x06proto3')
+  serialized_pb=_b('\n\x1ageneral_instructions.proto\"\xbf\x01\n\x13GeneralInstructions\x12=\n\x11main_instructions\x18\x01 \x01(\x0e\x32\".GeneralInstructions.MainInstrEnum\"i\n\rMainInstrEnum\x12\x0e\n\nDO_NOTHING\x10\x00\x12\n\n\x06REBOOT\x10\x01\x12\x0c\n\x08\x46REE_MEM\x10\x02\x12\r\n\tFLASH_LED\x10\x03\x12\x0f\n\x0b\x46LASH_GREEN\x10\x04\x12\x0e\n\nFLASH_BLUE\x10\x05\x62\x06proto3')
 )
 
 
@@ -46,11 +46,19 @@ _GENERALINSTRUCTIONS_MAININSTRENUM = _descriptor.EnumDescriptor(
       name='FLASH_LED', index=3, number=3,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FLASH_GREEN', index=4, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FLASH_BLUE', index=5, number=5,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=117,
-  serialized_end=189,
+  serialized_end=222,
 )
 _sym_db.RegisterEnumDescriptor(_GENERALINSTRUCTIONS_MAININSTRENUM)
 
@@ -83,7 +91,7 @@ _GENERALINSTRUCTIONS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=31,
-  serialized_end=189,
+  serialized_end=222,
 )
 
 _GENERALINSTRUCTIONS.fields_by_name['main_instructions'].enum_type = _GENERALINSTRUCTIONS_MAININSTRENUM

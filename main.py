@@ -6,6 +6,7 @@ import time
 # Protobuffer Messages!
 import messagedata_pb2
 import heaat_message_pb2
+import general_instructions_pb2
 
 # Our Python Files!
 import udp_matrix
@@ -18,6 +19,31 @@ import fft
 # hey_world = "hello world"
 # msg = bytes(hey_world, 'ascii');
 
+
+def test_status_serial():
+    # Setting up the serial device. If we are doing serial testing
+    ser = serial.Serial("COM4", 115200, serial.EIGHTBITS, serial.PARITY_NONE)
+
+    general_instructions = general_instructions_pb2.GeneralInstructions()
+    general_instructions.main_instructions = general_instructions_pb2.GeneralInstructions.MainInstrEnum.FLASH_GREEN
+
+    general_instr_byarr = bytearray(general_instructions.SerializeToString())
+
+    # Setting up message and general instruction data to tell led to toggle led.
+    message_data = messagedata_pb2.MessageData()
+    message_data.message_size = len(general_instr_byarr)
+    message_data.message_type = messagedata_pb2.MessageData.MessageType.GENERAL_INSTRUCTIONS
+
+    msg_dat = bytearray(message_data.SerializeToString())
+    msg_len = 16 - len(msg_dat)
+    for i in range(msg_len):
+        msg_dat.append(0)
+
+    out_arr = msg_dat + general_instr_byarr
+    ser.write(out_arr)
+
+
+
 def test_matrix_hsv():
     # Address and port for our esp32. if we are using sockets.
     server_address_port = ('192.168.1.27', 4040)
@@ -26,7 +52,7 @@ def test_matrix_hsv():
         for h in range(255):
             for y in range(32):
                 for x in range(64):
-                    hue_val = ((y * x)/20 + h * 3) % 255
+                    hue_val = ((y * x)*6 + h * 3) % 255
                     matrix.set_led_hsv(x, y, hue_val, 255, 60)
             matrix.update()
             time.sleep(0.01)
@@ -83,5 +109,7 @@ def test_matrix_pyaudio():
 
             matrix.update()
 
-test_matrix_pyaudio()
+#test_matrix_pyaudio()
 #test_matrix_hsv()
+
+test_status_serial()
